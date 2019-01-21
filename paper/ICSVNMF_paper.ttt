@@ -1,0 +1,108 @@
+\begin{table*}[t]
+\centering
+\caption{Summary of the different experimental factors and their modalities taken into account in the frequency low-pass filter estimator.}
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{12cm}@{}C{2cm}@{}}
+\hline
+    \textbf{\begin{tabular}[c]{@{}l@{}}experimental \\ factors\end{tabular}} & \textbf{modalities} & \begin{tabular}[c]{@{}C{2cm}@{}}\textbf{number}\\ \textbf{of modalities}\end{tabular}\\ \toprule
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{2cm}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}}
+    \textbf{sub-classes} & alert & animals & climate & humans & transportation & mechanics  & 6
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{2.4cm}@{}@{}C{2.4cm}@{}@{}C{2.4cm}@{}@{}C{2.4cm}@{}@{}C{2.4cm}@{}C{2cm}@{}}
+\rowcolor[HTML]{C0C0C0}
+   $\mathbf{TIR}$ (dB) & -12 & -6 & 0 & 6 & 12 & 5\\
+\end{tabularx}
+
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{2cm}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}}
+   $\mathbf{f_c}$ (kHz) & 0.5 & 1 & 2 & 5 & 10 & 20  & 6\\
+   \bottomrule
+\end{tabularx}
+\label{tab:experimental_factorsFilter}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[t]
+\centering
+\caption{Summary of the different experimental factors and their modalities taken into account in NMF estimator.}
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{12cm}@{}@{}C{2cm}}
+\hline
+    \textbf{\begin{tabular}[c]{@{}l@{}}experimental \\ factors\end{tabular}} & \textbf{modalities} &\begin{tabular}[c]{@{}C{2cm}@{}}\textbf{number}\\ \textbf{of modalities}\end{tabular}\\ \toprule
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{2cm}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}@{}C{2cm}@{}}
+    \textbf{sub-classes} & alert & animals & climate & humans & transportation & mechanics & 6
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{2.4cm}@{}@{}C{2.4cm}@{}@{}C{2.4cm}@{}@{}C{2.4cm}@{}@{}C{2.4cm}@{}C{2cm}@{}}
+\rowcolor[HTML]{C0C0C0}
+   $\mathbf{TIR}$ (dB) & -12 & -6 & 0 & 6 & 12 & 5 \\
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{4cm}@{}@{}@{}C{4cm}@{}@{}C{4cm}@{}C{2cm}@{}}
+  \textbf{method} & Sup-NMF & Sem-NMF & TI-NMF & 3 \\
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{4cm}@{}@{}C{4cm}@{}@{}C{4cm}@{}C{2cm}@{}}
+\rowcolor[HTML]{C0C0C0}
+    $\mathbf{w_t}$ (s) & 0.5 & 1 & \textit{all} & 3
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{3cm}@{}@{}C{3cm}@{}@{}C{3cm}@{}@{}C{3cm}@{}C{2cm}@{}}
+    $\mathbf{K}$ & 25 & 50 & 100 & 200  & 4\\
+\end{tabularx}
+
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{6cm}@{}@{}C{6cm}@{}C{2cm}@{}}
+\rowcolor[HTML]{C0C0C0}
+   $\mathbf{\beta}$ & 1 & 2 & 2\\
+\end{tabularx}
+
+\begin{tabularx}{17.5cm}{L{3cm}@{}C{12cm}@{}C{2cm}@{}}
+   threshold $\mathbf{t}$  &  from 0.30 to 0.70 with 0.01 step & 41\\
+   \bottomrule
+\end{tabularx}
+
+\label{tab:experimental_factorsNMF}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[t]
+\centering
+\caption{Best results for all the scenes according to the experimental factors $\beta$ and \textit{method} (in bold letter, the lowest error).}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+\textbf{method} & $f_c$ (kHz) & $\mathbf{\beta}$ & $\mathbf{K}$ & $\mathbf{w_t}$ (s) &   $\mathbf{t}$ & \textbf{$MAE$} (dB) \\ \midrule
+filter & 20  &  &  &  &  & 4.69 ($\pm$ 4.52) \\
+filter & 0.5 &  &  &  &  & 2.89 ($\pm$ 2.84) \\ \hline \hline
+Sup-NMF &  & 1 & 50 & 0.5  &  & 3.44 ($\pm$ 3.70) \\
+Sup-NMF &  & 2 & 50 & 0.5  &  & 3.02 ($\pm$ 3.33) \\ \hline \hline
+Sem-NMF &  & 1 & 100 & 0.5 &   & 2.33 ($\pm$ 1.10) \\
+Sem-NMF &  & 2 & 100 & 0.5 &   & 2.32 ($\pm$ 1.26) \\ \hline \hline
+\textbf{TI-NMF} &  & \textbf{1} & \textbf{200} & \textbf{0.5} &  \textbf{0.42} &\textbf{2.19 ($\pm$ 2.18)} \\
+TI-NMF &  & 2 & 25 & all &  0.54 & 2.20 ($\pm$ 2.26)\\ \bottomrule
+\end{tabular}
+\label{tab:results}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[t]
+\centering
+\caption{$MAE$ error averaged on all sub-classes on each $TIR$ for the best scenario according to each method.}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+\textbf{method} & filter & filter & Sup-NMF & Sem-NMF & TI-NMF \\ \midrule
+$f_c$ (kHz) & 20 & 0.5 &  &  &  \\
+$\mathbf{\beta}$ &  &  & 2 & 2 & 1 \\ \hline
+\textbf{-12} & 12.25 ($\pm$ 0.05) & 7.36 ($\pm$ 3.00) & 8.65 ($\pm$ 1.88) & 3.88 ($\pm$ 1.52) & 5.35 ($\pm$ 2.71) \\
+\textbf{-6} & 6.96 ($\pm$ 0.05) & 3.44 ($\pm$ 1.65) & 4.22 ($\pm$ 1.27) & 1.37 ($\pm$ 0.71)  & 2.82 ($\pm$ 1.30) \\
+\textbf{0} & 3.00 ($\pm$ 0.03) & 1.17 ($\pm$ 0.24) & 1.34 ($\pm$ 0.56) & 1.11 ($\pm$ 0.25) & 1.26 ($\pm$ 0.35) \\
+\textbf{6} & 0.25 ($\pm$ 0.06) & 1.03 ($\pm$ 0.26) & 0.26 ($\pm$ 0.10) & 2.25 ($\pm$ 0.19) & 0.70 ($\pm$ 0.32) \\
+\textbf{12} & 0.26 ($\pm$ 0.00) & 1.45 ($\pm$ 0.13) & 0.64 ($\pm$ 0.06) & 2.96 ($\pm$ 0.21)  & 0.84 ($\pm$ 0.24) \\ \bottomrule
+\end{tabular}
+\label{tab:results_TIR}
+\end{table*}
+\efloatseparator
+ 

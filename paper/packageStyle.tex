@@ -1,0 +1,162 @@
+%%%%%% MISE EN PAGES %%%%%%
+\usepackage{geometry}
+\geometry{outer=2cm,inner=3cm,top=3cm}
+
+\setcounter{tocdepth}{3}     % Dans la table des matieres
+\setcounter{secnumdepth}{3}  % Avec un numero.
+\usepackage{setspace}
+
+\usepackage{fancyhdr}	% marge en haut et en bas
+\pagestyle{fancy}
+\usepackage{calc}
+\fancyhead{}	% vide l'entête
+\fancyfoot{} % vide le pied~de~page
+
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\rightmark}
+\fancyfoot[C]{\thepage}	% numéro de page en bas au centre
+
+\renewcommand{\headrulewidth}{0.4pt} % épaisseur du trait en haut
+\renewcommand{\footrulewidth}{0.4pt} % épaisseur du trait en bas
+
+\fancypagestyle{mypagestyle}{%
+    \fancyhead{}	
+    \fancyfoot{} 
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt} 
+	\renewcommand{\footrulewidth}{0.4pt} 
+}
+
+
+\fancypagestyle{couvertureAbstract}{%
+    \fancyhead{}	
+    \fancyfoot{} 
+    \fancyfoot[C]{}
+	\renewcommand{\headrulewidth}{0pt} 
+	\renewcommand{\footrulewidth}{0pt} 
+}
+%
+\usepackage{layout}
+\usepackage{tocbibind} % include tableofcontent in itself
+
+%%%%%% PAGE DE GARDE %%%%%%
+
+\geometry{outer=2cm,inner=3cm,top=3cm}
+\usepackage[scaled]{helvet} % font used on cover (Helvetica)
+\usepackage{eso-pic} % to set background picture
+\usepackage{multicol} % for back cover (abstracts)
+\usepackage{graphicx} % to include logos
+\usepackage{tikz} % to compose background picture
+
+% Colors (extracted from SPI's template)
+\definecolor{boxcolor1}{rgb}{0.91373,0.92941,0.87451}
+\definecolor{boxcolor2}{rgb}{0.94902,0.93333,0.91373}
+\definecolor{boxcolor3}{rgb}{0.76078,0.87843,0.17647}
+\definecolor{headercolor}{rgb}{0.94118,0.30980,0.17255}
+\definecolor{namecolor}{rgb}{1.0,0.4,0.0}
+\definecolor{titlecolor}{rgb}{0.19216,0.51765,0.60784}
+% Also used: gray, teal (predefined by xcolor package, usually loaded by document class)
+
+% Cover environment, to keep changes local
+\newenvironment{cover}{%
+  \fontfamily{phv}\selectfont % Select Helvetica font
+  \pagestyle{empty} % No page number
+}{
+  \addtocounter{page}{0}
+  \cleardoublepage
+}
+
+% Macro for background common to front and back
+\newcommand{\tikzBG}{%
+  \path (0,0) rectangle (1,1);
+  %TODO: You should adjust the bottom height of the following rectangle to fit your abstract's length
+  \path [fill=boxcolor1] (.0571,.11) rectangle (.481,.963); 
+  \path [fill=boxcolor2] (.4333,.697) rectangle (.9048,.7475);
+  \path [fill=boxcolor2] (.4333,.7811) rectangle (.9048,.8316);
+  \path [fill=boxcolor2] (.4333,.8687) rectangle (.9048,.9192);
+  \path [fill=boxcolor3] (.0571,.7879) rectangle (.5762,.8316);
+  \node[inner sep=0pt] at (0.2285,0.8788) [above left] {%
+    \includegraphics[height=.0707\paperheight,keepaspectratio]{./figures/logo/logo_unb.png}};
+  \node[inner sep=0pt] at (0.6667,0.8788) [above right] {%
+    \includegraphics[height=.0808\paperheight,keepaspectratio]{./figures/logo/logo_ecn_color.png}};
+  \node at (.0571,.8316) [above right,color=headercolor] {%
+    \fontsize{29}{35}\selectfont\bfseries Th\`ese de Doctorat};
+}
+
+% Macro for repeated information (to avoid insconsistency)
+%TODO: fill in with no formatting but desired case
+\newcommand{\firstName}{Jean-Rémy}
+\newcommand{\surname}{Gloaguen}
+\newcommand{\thesisTitle}{Estimation du niveau sonore de sources d'intérêt au sein de mélanges sonores urbaines : application au trafic routier}
+
+%%%%%%% SYMBOLES %%%%%
+\usepackage{tipa}	% pour avoir l'accent concave
+\usepackage{lmodern}	% pour les guillemets
+\usepackage{gensymb}	% pour les degrés
+\usepackage{enumitem}	% pour changer le symbole de l'item (\begin{itemize}[label=$\bullet$])
+\newlist{longenum}{enumerate}{7}
+\setlist[longenum,1]{label=\roman*)}
+\setlist[longenum,2]{label=\roman*)}
+\setlist[longenum,3]{label=\roman*)}
+\setlist[longenum,4]{label=\roman*)}
+\setlist[longenum,5]{label=\roman*)}
+\setlist[longenum,6]{label=\roman*)}
+\usepackage{steinmetz}	% pour \phase
+
+%%%%%%% EQUATION %%%%%%
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancybox}
+\usepackage{xfrac}	% fraction de type "1/4"
+\usepackage{cases}	% système équation
+\usepackage[overload]{empheq}
+\usepackage{bm}		% pour mettre en gras .
+\usepackage{units} 	% x/y barre latérale pour les fractions
+%
+%%%%%%% FIGURE %%%%%%
+\usepackage{subfigure}	% utiliser subfigure
+\usepackage{float}	% utiliser H dans les figures
+%
+%%%%%% TABLEAUX %%%%%%
+\usepackage{array,multirow,makecell}
+%\addto\captionsfrench{\def\tablename{\textsc{Tableau}}}% pour avoir TABLEAU et pas TABLE dans les légendes des tableaux
+\usepackage{colortbl} % pour avoir des lignes colorées dans les tableau
+%\usepackage{slashbox} % pour les \backslashbox
+%\usepackage{subcaption}
+\usepackage{hhline}	% pour les lignes horizontales 
+\usepackage{tabularx} % permet itemize dans les cellules
+\usepackage{booktabs}
+\usepackage{longtable}	% pour les tableaux longs
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%%%%% ALGORITHME %%%%%
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\floatname{algorithm}{Algorithme}
+
+%%%%% BIBLIO %%%%%
+\usepackage[fixlanguage]{babelbib}
+\selectbiblanguage{french}
+\usepackage{breakcites}	% pour couper les références en bout de ligne
+%\usepackage{natbib}
+\usepackage{bibunits}	% pour liste de publications
+\usepackage{bibentry}
+
+\usepackage{hyperref}
+
+\providecommand{\enquote}[1]{``#1''}
+\global\def\bibAnnoteFile{}
+
+%%%%% APPENDICES %%%%%%%
+\usepackage[toc,page]{appendix}
+
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{url}	% gérer les adresses www.
+\linespread{1.2}	% interligne
+
+\newcommand{\ml}[1]{\textcolor{red}{ML : #1}}
+
+\cleardoublepage
