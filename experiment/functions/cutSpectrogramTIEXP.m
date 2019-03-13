@@ -1,11 +1,11 @@
-function [soundMix] = cutSpectrogramEXP(W,setting)
+function [soundMix] = cutSpectrogramTIEXP(W,setting)
 
 switch setting.domain
     case 'mel'
         sr = setting.sr;
         numberMel = setting.numberMel; 
 
-        [W,~] = spectre2MelEXP(W,numberMel,setting.cutOffFreq,sr);
+        [W,frequency] = spectre2MelEXP(W,numberMel,setting.cutOffFreq,sr);
         ind = numberMel;
         
     case 'thirdOctave'
@@ -18,6 +18,7 @@ switch setting.domain
         [~,ind] = min(abs(setting.cutOffFreq-frequency));
 end
 
+soundMix.frequency = frequency;
 soundMix.ind = ind;
 soundMix.seed = rng;
 soundMix.W = W;

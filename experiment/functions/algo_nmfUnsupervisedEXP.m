@@ -28,7 +28,7 @@ switch beta
             H(isnan(H)) = 0;
 
             Vap = W*H;
-            cost(iter) = betadivEXP(V,Vap,beta);
+            cost(iter) = betadivSUPSEMEXP(V,Vap,beta);
         end
     case 1
         for iter = 1:iteration
@@ -41,7 +41,7 @@ switch beta
             H(isnan(H)) = 0;
             
             Vap = W*H;
-            cost(iter) = betadivEXP(V,Vap,beta);
+            cost(iter) = betadivSUPSEMEXP(V,Vap,beta);
         end
     case 0
         for iter = 1:iteration
@@ -53,7 +53,7 @@ switch beta
             H = H.*((W'*(V.*Vap.^(-2)))./(sparsity+W'*Vap.^(-1))).^(1/2);
             
             Vap = W*H;
-            cost(iter) = betadivEXP(V,Vap,beta);
+            cost(iter) = betadivSUPSEMEXP(V,Vap,beta);
         end
     otherwise
         if beta < 1
@@ -66,7 +66,7 @@ switch beta
                 end
                 
                 Vap = W*H;
-                cost(iter) = betadivEXP(V,Vap,setting.beta);
+                cost(iter) = betadivSUPSEMEXP(V,Vap,setting.beta);
             end
         else
             for iter = 1:iteration
@@ -80,7 +80,7 @@ switch beta
                 end
                 
                 Vap = W*H;
-                cost(iter) = betadivEXP(V,Vap,setting.beta);
+                cost(iter) = betadivSUPSEMEXP(V,Vap,setting.beta);
             end
         end
 end

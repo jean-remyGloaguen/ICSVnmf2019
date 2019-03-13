@@ -1,4 +1,12 @@
-function [sortedData,Fc,Flow,Fhigh] = NarrowToNthOctaveEXP(arrayOfNBCenterFreqs,arrayOfdBToConvert,n)
+function [sortedData,Fc,Flow,Fhigh] = NarrowToNthOctaveTIEXP(arrayOfNBCenterFreqs,arrayToConvert,n)
+
+if size(arrayOfNBCenterFreqs,1)==1 && size(arrayOfNBCenterFreqs,2)~=1
+    arrayOfNBCenterFreqs = arrayOfNBCenterFreqs';
+end
+
+if size(arrayToConvert,1)==1 && size(arrayToConvert,2)~=1
+    arrayToConvert = arrayToConvert';
+end
 
 df=arrayOfNBCenterFreqs(2)-arrayOfNBCenterFreqs(1);
 
@@ -8,7 +16,7 @@ correctionFactor=1;
 % ACF=(1/mean(window(@hann,2^11)));
 % ECF=(1/mean(window(@hann,2^11)));
 % correctionFactor=1/ACF;
-arrayOfdBToConvert=arrayOfdBToConvert*correctionFactor;
+arrayToConvert=arrayToConvert*correctionFactor;
 
 %Determine Initial Center frequency (Fc)
 previous=1000*2^(1/n);
@@ -32,23 +40,23 @@ end
     BW=Fhigh-Flow;
 
 %Sort data in frequency bins
-sortedData=zeros(length(Fc),size(arrayOfdBToConvert,2)); zeroFreqValue=0;
-for jj=1:size(arrayOfdBToConvert,1) %Do for each value given
+sortedData=zeros(length(Fc),size(arrayToConvert,2)); zeroFreqValue=0;
+for jj=1:size(arrayToConvert,1) %Do for each value given
     for kk=1:length(Fc) %Check each Fc bin to see where value should be placed
         if arrayOfNBCenterFreqs(jj)>=Flow(kk) && arrayOfNBCenterFreqs(jj)<Fhigh(kk) %Find place. In the rare case a given center freq = flow(ii)/fhigh(ii+1) then sum the value in flow
             if sortedData(kk,:)==0 %if no values has been added to the band then set initial value
-                sortedData(kk,:)=arrayOfdBToConvert(jj,:);
+                sortedData(kk,:)=arrayToConvert(jj,:);
                 N(kk)=1;
             else %else sum in the value
-                sortedData(kk,:)=sqrt(sum(([sortedData(kk,:); arrayOfdBToConvert(jj,:)].^2))); %dB add value to that bin
+                sortedData(kk,:)=sqrt(sum(([sortedData(kk,:); arrayToConvert(jj,:)].^2))); %dB add value to that bin
                 N(kk)=N(kk)+1;
             end
         else %else check to see if the value belongs in the 0 Hz band
             if (kk==1) && arrayOfNBCenterFreqs(jj)<Flow(kk)
                 if zeroFreqValue==0
-                    zeroFreqValue=arrayOfdBToConvert(jj,:);
+                    zeroFreqValue=arrayToConvert(jj,:);
                 else
-                    zeroFreqValue=sqrt(sum(([zeroFreqValue; arrayOfdBToConvert(jj,:)].^2))); %dB add value to that bin
+                    zeroFreqValue=sqrt(sum(([zeroFreqValue; arrayToConvert(jj,:)].^2))); %dB add value to that bin
                 end
             end
         end
