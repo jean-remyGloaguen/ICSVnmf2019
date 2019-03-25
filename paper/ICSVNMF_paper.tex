@@ -157,7 +157,7 @@ The choice of the dimensions is often made so that $F\times K + K \times N < F \
 The operator $d_{\beta}(x\vert y)$ is a divergence calculation and usually belongs to the $\beta-$divergence class \cite{fevotte_nonnegative_2009} in which the well known Euclidean distance and the Kullback-Leibler divergence.
 
 \subsection{Thresholded initialized NMF}
-Thresholded initialized NMF has been proposed in \cite{gloaguen2019road} and is based on the unsupervised NMF. Usually in unsupervised learning, $\mathbf{W}$, as  $\mathbf{H}$, is initialized randomly. In TI NMF, an initial dictionary, $\mathbf{W_0}$ dedicated to a specific sound source, is built from a learning database, see part \ref{part:test_datase}.
+Thresholded initialized NMF has been proposed in \cite{gloaguen2019road} and is based on the unsupervised NMF. Usually in unsupervised learning, $\mathbf{W}$, as  $\mathbf{H}$, is initialized randomly. In TI NMF, an initial dictionary, $\mathbf{W_0}$ dedicated to a specific sound source, is built from a learning database, see section~\ref{part:test_datase}.
 Then NMF is performed where $\mathbf{W}$ and $\mathbf{H}$ are updated alternatively. $\mathbf{W}$ is therefore updated with a forced initialization with \textit{a priori} knowledge but is adapted to the actual content of the scene under study. Among the different algorithms proposed to solve \ref{eq:min-D-WH}, the multiplicative update of $\mathbf{W}$ and $\mathbf{H}$ is chosen as it has been well studied in the literature and ensures convergence of the results. It can be found in \cite{fevotte_algorithms_2011}.
 After $N$ iterations, a measure of similarity $D\left(\mathbf{W_0} \vert \vert \mathbf{W}^{'} \right)$ between $\mathbf{W_0}$ and the obtained dictionary $\mathbf{W}^{'}$ for each element $k$ is computed using a cosine similarity metric,
 
@@ -169,7 +169,7 @@ $D\left(\mathbf{W_0}_k \vert \vert \mathbf{W}^{'}_k \right) = 1$ means that the 
 
 \section{Experimental protocol}\label{part:protocol}
 
-In order to study the TI NMF behavior according urban sounds sources, the experimental protocol, the databases and the experimental factors involved in the experiment are presented, each of these experimental factors having multiples modalities, see Figure \ref{fig:bloc_nmf}.
+In order to study the TI NMF behavior according urban sounds sources, the experimental protocol, the databases and the experimental factors involved in the experiment are presented, each of these experimental factors having multiples modalities, see Fig.~ \ref{fig:bloc_nmf}.
 
 \subsection{Test databases}\label{part:test_datase}
 
@@ -227,13 +227,13 @@ thus, the optimal modalities found here are not exactly the same than the one fo
 \label{fig:resultat_mae}
 \end{figure}
 
-The errors on each sub-corpus and for each $TIR$ value are displayed on Figure \ref{fig:bar_mae}.
+The errors on each sub-corpus and for each $TIR$ value are displayed in Fig. \ref{fig:bar_mae}.
 The error at $TIR$ = -12 dB, as it is an extreme case where the traffic component is low, are the most important for each sub-corpus with high standard deviation. For \textit{animals} and \textit{transportation}, the $MAE$ errors exceed 3 dB. With the exception of the \textit{transportation} sub-corpus at $TIR = -6$ dB, the rest of the errors are inferior to 3 dB.
 The errors for \textit{animals} sub-corpus are lower than the two other sub-corpuses as it contains interfering sound events relative to bird's whistles, in a highest frequencies domain than the traffic spectra, and dog barking, more brief in time.
 One observes that the $MAE$ errors for this sub-corpus decrease as the $TIR$ values increase. On the contrary, for \textit{humans} and \textit{transportation} sub-corpus for $TIR \leq 0$ dB, the $MAE$ errors decrease too but increase when $TIR > 0$ dB.
-In parallel to the bar distribution of the $MAE$ errors, the distribution of relative errors ($\Delta_{L_{eq}} = \tilde{L}_{eq,traffic}-L_{eq,traffic}$) is added in Figure \ref{fig:boxplot} with boxplots. When $\Delta_{L_{eq}} > 0$, the traffic sound level estimated by TI NMF is over-estimated while it is underestimated when $\Delta_{\tilde{L}_{eq}} < 0$.
+In parallel to the bar distribution of the $MAE$ errors, the distribution of relative errors ($\Delta_{L_{eq}} = \tilde{L}_{eq,traffic}-L_{eq,traffic}$) is added in Fig. \ref{fig:boxplot} with boxplots. When $\Delta_{L_{eq}} > 0$, the traffic sound level estimated by TI NMF is over-estimated while it is underestimated when $\Delta_{\tilde{L}_{eq}} < 0$.
 For the \textit{animals} sub-corpus, one notices that TI NMF underestimates the traffic sound level for all $TIR$ values. For the two others sub-corpus, TI NMF mostly  overestimates the traffic sound level when $TIR \leq 0$ dB and then underestimates it when $TIR > 0$ dB.
-To better understand the TI NMF behavior, the evolution of the $MAE$ errors according to the threshold and the distance $D(\mathbf{W_0}\vert \vert \mathbf{W})$ shape are displayed in Figure \ref{fig:D_threshold}.
+To better understand the TI NMF behavior, the evolution of the $MAE$ errors according to the threshold and the distance $D(\mathbf{W_0}\vert \vert \mathbf{W})$ shape are displayed, see Fig.~\ref{fig:D_threshold}.
 
 \begin{figure}
 \centering
@@ -258,20 +258,16 @@ With the fixed threshold $t = 0.42$, only less than 100 elements from the obtain
 TI NMF makes it possible to adapt the dictionary by learning it for each scene. With the fixed threshold it is also a variable number of elements in the $\mathbf{W}_{traffic}$ that are considered,  discarding the other elements that diverge too much from the original traffic spectra on $\mathbf{W_0}$.
 
 Figure \ref{fig:mae_threshold} displays the evolution of the $MAE$ errors according to the threshold which allows us to better apprehend the estimation errors. It states the existence of optimal thresholds in each different case. The lower the $TIR$ value, the higher the threshold has to be, while it has to decrease when the traffic component becomes predominant.
-At $TIR$ = -12 dB, the optimal threshold is inferior to the fixed threshold $t$ = 0.42 for \textit{animals} sub-corpus while it is superior for the two other sub-corpuses. As a result, for the first case, TI NMF, with $t$ = 0.42, does not take into account a sufficient number of elements in $\mathbf{W}_{traffic}$ which leads to an underestimation of the traffic sound level as can be seen in Figure \ref{fig:boxplot}. On the opposite, as the optimal threshold for the two others classes is higher, TI NMF includes too many elements that includes some elements of the interfering sound classes. This behavior is due to the interfering sound source being more different in the \textit{animals} sub-corpus than in the \textit{humans} and the \textit{transportation} sub-corpuses. Overall, this leads to an overestimation of the traffic sound level.
+At $TIR$ = -12 dB, the optimal threshold is inferior to the fixed threshold $t$ = 0.42 for \textit{animals} sub-corpus while it is superior for the two other sub-corpuses. As a result, for the first case, TI NMF, with $t$ = 0.42, does not take into account a sufficient number of elements in $\mathbf{W}_{traffic}$ which leads to an underestimation of the traffic sound level as can be seen in Fig.~\ref{fig:boxplot}. On the opposite, as the optimal threshold for the two others classes is higher, TI NMF includes too many elements that includes some elements of the interfering sound classes. This behavior is due to the interfering sound source being more different in the \textit{animals} sub-corpus than in the \textit{humans} and the \textit{transportation} sub-corpuses. Overall, this leads to an overestimation of the traffic sound level.
 When the $TIR$ values increase, the traffic component becomes more important in the sound mixtures and in the dictionary $\mathbf{W}$. When $TIR$ = 12 dB, the optimal error is obtained for a lower threshold to almost take into account all the element of the dictionary $\mathbf{W}$. TI NMF with $t$ = 0.42 discards some traffic spectra which generates the underestimation of the traffic component.
-
-Finally, it has to be reminded that the presence of these sound sources and the $TIR$ values are unknown in an urban context. Despite these different behaviors and performances, TI NMF stays a good approach and makes it possible a compromise to adapt on each case.
-
-TODO ce dernier par doit etre reecrit ou enlevé
 
 \section{Conclusion}
 
 The thresholded initialized Non-negative Matrix Factorization behavior has been studied on urban sound mixtures in order to better apprehend its performances according different urban sound sources dealing with the estimation of the traffic sound level.
 With this method, a dictionary $\mathbf{W_0}$ is initialized
 with road traffic spectra and optimized to fit the data at hand. The traffic
-elements that are similar to the road traffic spectra are then extracted by hard thresholding of TODO what ?.
-TI NMF makes it possible to learn a specific dictionary on each scene and to only consider the least divergent part of the dictionary thanks to the selection made during the thresholding step. TODO reformuler
+elements that are similar to the road traffic spectra are then extracted by hard thresholding.
+TI NMF makes it possible to learn a specific dictionary on each scene and to only consider the least divergent part of the dictionary with the thresholding step.
 The sound database used here is an artificial build-up of a traffic component and different interfering sound classes (\textit{animals}, \textit{humans}, \textit{transportation}) with calibrated sound level in order to propose a controlled framework.
 Among the different modalities of the experimental factors, only one combination was retained ($K$ = 200, $w_t$ = 0.5 s, Euclidean distance, $t$ = 0.42). This choice was made in order to reduce the complexity of the study and to propose the most efficient method, whatever the nature of the interference sound source, so as not to add a classification step before.
 
